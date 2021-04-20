@@ -5,8 +5,6 @@ import SettingsRepository from '../repositories/SettingsRepository'
 
 class SettingsController
 {
-  seila: string
-
   async create(request: Request, response: Response) {
     const settingsRepository = getCustomRepository(SettingsRepository)
 
