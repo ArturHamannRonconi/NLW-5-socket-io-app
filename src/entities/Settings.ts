@@ -1,5 +1,5 @@
 import { Entity, Column, CreateDateColumn, UpdateDateColumn, PrimaryColumn } from 'typeorm'
-import { v4 as uui } from 'uuid'
+import { v4 as setUuid } from 'uuid'
 
 @Entity('settings')
 class Settings
@@ -21,7 +21,7 @@ class Settings
 
   constructor()
   {
-    if(!this.id) this.id = uui()
+    if(!this.id) this.id = setUuid()
   }
 
 }
