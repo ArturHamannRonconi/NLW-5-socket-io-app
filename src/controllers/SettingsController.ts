@@ -1,9 +1,10 @@
 import { Request, Response } from 'express'
 
-import SettingsService, { SettingsCreate } from '../services/SettingsService'
+import SettingsService, { SettingsCreate, SettingsFindByUsername } from '../services/SettingsService'
 
 class SettingsController
 {
+
   async create(request: Request, response: Response): Promise<Response>
   {
     const { chat, username }: SettingsCreate = request.body
@@ -20,6 +21,27 @@ class SettingsController
       return response.json({ error: error.message, body: null })
     }
 
+  }
+
+  async findByUsername(request: Request, response: Response): Promise<Response>
+  {
+    const { username } = request.params as SettingsFindByUsername
+    const settingsService = new SettingsService()
+    
+    const settings = await settingsService.findByUsername({ username })
+
+    return response.json(settings)
+  }
+
+  async update(request: Request, response: Response)
+  {
+    const { username } =  request.params
+    const { chat } = request.body
+
+    const settingsService = new SettingsService()
+    const settings = await settingsService.update({ username, chat })
+
+    return response.json(settings)
   }
 }
 
