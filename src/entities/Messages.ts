@@ -29,7 +29,6 @@ class Messages
   {
     if(!this.id) this.id = setUuid()
   }
-
 }
 
 export default Messages

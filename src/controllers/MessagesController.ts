@@ -6,7 +6,7 @@ class MessagesController
 {
   async create(request: Request, response: Response): Promise<Response>
   {
-    const { user_id, text, admin_id }: MessagesCreate = request.body
+    const { user_id, text, admin_id } = request.body as MessagesCreate
     const messagesService = new MessagesService()
 
     try {

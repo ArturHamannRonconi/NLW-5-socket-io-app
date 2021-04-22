@@ -13,11 +13,12 @@ class MessagesService
 {
   private messagesRepository: Repository<Messages>
 
-  constructor() {
+  constructor()
+  {
     this.messagesRepository = getCustomRepository(MessagesRepository)
   }
 
-  async create(messagesCreate: MessagesCreate): Promise<Messages>
+  async create(messagesCreate: MessagesCreate)
   { 
     const message = this.messagesRepository.create(messagesCreate)
     await this.messagesRepository.save(message)
