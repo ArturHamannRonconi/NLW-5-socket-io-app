@@ -9,7 +9,8 @@ class UsersService
 {
   private usersRepository: Repository<Users>
 
-  constructor() {
+  constructor()
+  {
     this.usersRepository = getCustomRepository(UsersRepository)
   }
 
@@ -23,6 +24,12 @@ class UsersService
     const user = this.usersRepository.create(usersCreate)
     await this.usersRepository.save(user)
 
+    return user
+  }
+
+  async findByEmail(usersCreate: UsersCreate)
+  {
+    const user = await this.usersRepository.findOne(usersCreate)
     return user
   }
 }
