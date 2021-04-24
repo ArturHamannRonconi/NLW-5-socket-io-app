@@ -4,7 +4,6 @@ import Settings from '../entities/Settings'
 import SettingsRepository from '../repositories/SettingsRepository'
 
 type SettingsCreate = Pick<Settings, 'chat' | 'username'>
-type SettingsFindByUsername = Pick<Settings, 'username'>
 
 class SettingsService
 {
@@ -27,9 +26,9 @@ class SettingsService
     return settings
   }
 
-  async findByUsername(settingsFindByUsername: SettingsFindByUsername)
+  async findByUsername(username: string)
   {
-    const settings = await this.settingsRepository.findOne(settingsFindByUsername)
+    const settings = await this.settingsRepository.findOne({ username })
     return settings
   }
 
@@ -43,5 +42,5 @@ class SettingsService
   }
 }
 
-export { SettingsCreate, SettingsFindByUsername }
+export { SettingsCreate }
 export default SettingsService

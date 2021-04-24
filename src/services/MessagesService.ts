@@ -26,10 +26,23 @@ class MessagesService
     return message
   }
 
-  async listMessages(user: Pick<Messages, 'user_id'>)
+  async listMessages(user_id: string)
   {
-    const list = await this.messagesRepository.find(user)
-    return list
+    const list = await this.messagesRepository.find({
+      where: { user_id },
+      relations: ['User']
+    })
+
+    const messages = list.reduce((messages, message) => {
+      messages.push({
+        isClientMessage: message.admin_id === null,
+        text: message.text,
+        created_at: message.created_at
+      })
+      return messages
+    }, [])
+
+    return messages
   }
 }
 
