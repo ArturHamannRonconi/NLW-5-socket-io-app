@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import SettingsService, { SettingsCreate, SettingsFindByUsername } from '../services/SettingsService'
+import SettingsService, { SettingsCreate } from '../services/SettingsService'
 
 class SettingsController
 {
@@ -25,10 +25,10 @@ class SettingsController
 
   async findByUsername(request: Request, response: Response): Promise<Response>
   {
-    const { username } = request.params as SettingsFindByUsername
+    const { username } = request.params
     const settingsService = new SettingsService()
     
-    const settings = await settingsService.findByUsername({ username })
+    const settings = await settingsService.findByUsername(username)
 
     return response.json(settings)
   }

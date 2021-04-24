@@ -10,7 +10,7 @@ class UsersController
     const usersService = new UsersService()
 
     try {
-      const user = await usersService.create({ email })
+      const user = await usersService.create(email)
       response.status(200)
 
       return response.json({ error: null, body: user })    

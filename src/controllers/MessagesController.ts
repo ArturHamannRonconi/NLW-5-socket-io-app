@@ -25,14 +25,14 @@ class MessagesController
   
   async listMessages(request: Request, response: Response)
   {
-    const { id } = request.params
+    const { userId } = request.params
     const messagesService = new MessagesService()
     
     try {
-      const list = await messagesService.listMessages({ user_id: id })
+      const messages = await messagesService.listMessages(userId)
 
       response.status(200)
-      return response.json({ error: null, body: list })
+      return response.json({ error: null, body: messages })
       
     } catch (error) {
       response.status(400)
