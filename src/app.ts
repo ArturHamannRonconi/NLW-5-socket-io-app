@@ -16,13 +16,11 @@ app.engine('html', renderFile)
 app.use(express.static(publicDir))
 
 app.get('/page/client', (req, res) => res.render('html/client.html'))
+app.get('/page/admin', (req, res) => res.render('html/admin.html'))
+
 app.use(express.json())
 app.use(routes)
 
-
 const server = createServer(app)
 const io = new Server(server)
-
-io.on('connection', (socket: Socket) => console.log(`Connection has been concluded... ${socket.id}`))
-
 export { server, io }
